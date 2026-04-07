@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDIC - Global Cargo Shipping</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #dc3545, #b71c1c);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+        header h1 {
+            font-size: 2.8em;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: #222;
+            padding: 12px;
+            gap: 10px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+        }
+        nav a:hover { background: #dc3545; }
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h2 { 
+            color: #dc3545; 
+            text-align: center;
+        }
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+        button {
+            background: #dc3545;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        button:hover { background: #b71c1c; }
+        .success {
+            color: #28a745;
+            font-weight: bold;
+            margin: 15px 0;
+            text-align: center;
+            display: none;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .features div {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-weight: bold;
+            color: #dc3545;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #222;
+            color: white;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 GDIC</h1>
+        <p>Global Delivery International Cargo • Fast • Secure • Worldwide Shipping</p>
+    </header>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#booking">Book Shipment</a>
+        <a href="#tracking">Track Parcel</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <main>
+        <div class="section">
+            <h2>Welcome to GDIC Shipping</h2>
+            <p>We deliver parcels and cargo across the globe with reliability and speed. Register your international shipment in minutes and track it in real-time.</p>
+            
+            <div class="features">
+                <div>✈️ Air Freight</div>
+                <div>🚢 Sea Freight</div>
+                <div>🚚 Land Transport</div>
+                <div>📦 Express Parcels</div>
+            </div>
+        </div>
+
+        <!-- Booking Form -->
+        <div id="booking" class="section">
+            <h2>Register New Shipment</h2>
+            <form id="bookingForm">
+                <input type="text" id="senderName" placeholder="Sender Full Name" required>
+                <input type="email" id="senderEmail" placeholder="Sender Email" required>
+                <input type="text" id="originCountry" placeholder="Origin Country (e.g. Nigeria)" required>
+                
+                <input type="text" id="receiverName" placeholder="Receiver Full Name" required>
+                <input type="text" id="destinationCountry" placeholder="Destination Country (e.g. USA, UK, China)" required>
+                
+                <input type="number" id="weight" placeholder="Weight in kg" step="0.1" min="0.1" required>
+                <select id="shipmentType" required>
+                    <option value="">Select Shipment Type</option>
+                    <option value="Parcel">Express Parcel</option>
+                    <option value="Cargo">General Cargo</option>
+                    <option value="Air">Air Freight</option>
+                    <option value="Sea">Sea Freight</option>
+                </select>
+                <textarea id="description" rows="3" placeholder="Description of items (optional)"></textarea>
+                
+                <button type="submit">Submit Shipment & Get Tracking ID</button>
+            </form>
+            <p class="success" id="successMsg"></p>
+        </div>
+
+        <!-- Tracking Section -->
+        <div id="tracking" class="section">
+            <h2>Track Your Parcel</h2>
+            <input type="text" id="trackingId" placeholder="Enter Tracking ID (e.g. GDIC-123456)" style="width:100%; padding:15px; margin-bottom:10px;">
+            <button onclick="searchTracking()">Search Tracking</button>
+            <div id="trackingResult" style="margin-top:20px; padding:15px; background:white; border-radius:8px; display:none;"></div>
+        </div>
+
+        <div id="services" class="section">
+            <h2>Our International Services</h2>
+            <p>Door-to-door delivery • Real-time tracking • Customs support • Insurance options • Competitive rates for worldwide shipping.</p>
+        </div>
+
+        <div id="contact" class="section">
+            <h2>Contact GDIC</h2>
+            <p>Email: info@gdicshipping.com • Phone: +1-800-GDIC-SHIP • Available 24/7 for global clients.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 GDIC - Global Delivery International Cargo • International Cargo Solutions</p>
+    </footer>
+
+    <script>
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const successMsg = document.getElementById('successMsg');
+            const trackingId = 'GDIC-' + Math.floor(100000 + Math.random() * 900000);
+            
+            successMsg.style.display = 'block';
+            successMsg.innerHTML = `✅ Shipment Registered Successfully!<br>Your Tracking ID: <strong>${trackingId}</strong>`;
+            
+            // Clear the form
+            this.reset();
+            
+            console.log("New shipment submitted with ID:", trackingId);
+            // Next step: We will connect this to Firebase so data saves permanently and you can view all shipments
+        });
+
+        // Simple tracking demo
+        function searchTracking() {
+            const id = document.getElementById('trackingId').value.trim();
+            const result = document.getElementById('trackingResult');
+            
+            if (id === '') {
+                result.innerHTML = '<p style="color:red;">Please enter a valid tracking ID</p>';
+            } else {
+                result.innerHTML = `<p><strong>Tracking ID:</strong> ${id}</p>
+                                    <p>Current Status: <strong style="color:#dc3545;">In Transit</strong></p>
+                                    <p>Last Location: International Hub • Updated just now</p>
+                                    <p>Estimated Delivery: 3-7 business days</p>`;
+            }
+            result.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
